@@ -11,7 +11,7 @@ const resolveMediaUrl = (value) => {
   const uploadsIndex = value.indexOf('/uploads/');
   if (uploadsIndex !== -1) {
     return `${API_BASE_URL}${value.slice(uploadsIndex)}`;
-  }
+  } 
   if (value.startsWith('uploads/')) {
     return `${API_BASE_URL}/${value}`;
   }

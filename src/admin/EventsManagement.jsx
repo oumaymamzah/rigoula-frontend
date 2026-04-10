@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Table, Button, Modal, Form, Alert, Spinner, Badge, Row, Col } from 'react-bootstrap';
+import { Container, Table, Button, Modal, Form, Alert, Spinner, Row, Col } from 'react-bootstrap';
 import api from '../services/api';
 
 const EventsManagement = () => {
@@ -129,10 +129,6 @@ const EventsManagement = () => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
-  };
-
-  const isUpcoming = (dateString) => {
-    return new Date(dateString) >= new Date();
   };
 
   if (loading) {

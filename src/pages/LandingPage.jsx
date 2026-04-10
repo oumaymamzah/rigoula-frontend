@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Card, Badge, Spinner, Tabs, Tab, Modal } from 'react-bootstrap';
 import { useSettings } from '../context/SettingsContext.jsx';
 import api from '../services/api';
-import productService from '../services/productService';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://rigoula-backend1.onrender.com';
 
 const resolveMediaUrl = (value) => {
   if (!value) return '';
@@ -24,8 +23,6 @@ const LandingPage = () => {
   const { settings } = useSettings();
   const [events, setEvents] = useState([]);
   const [certifications, setCertifications] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
@@ -152,14 +149,12 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
   const fetchData = async () => {
     try {
-      const [eventsRes, certsRes, productsRes] = await Promise.all([
+      const [eventsRes, certsRes] = await Promise.all([
         api.get('/evenements'),
-        api.get('/certifications'),
-        productService.getAllProducts({})
+        api.get('/certifications')
       ]);
       setEvents(eventsRes.data.data);
       setCertifications(certsRes.data.data);
-      setProducts(productsRes.data.slice(0, 8));
     } catch (error) {
       console.error('Erreur:', error);
     } finally {
@@ -215,43 +210,16 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
   };
 
   // ==================== COMPOSANTS RÉUTILISABLES ====================
-
-  const TimelineItem = ({ year, title, color }) => (
-    <div className="timeline-item">
-      <div 
-        className="timeline-marker" 
-        style={{ 
-          background: color, 
-          color: 'white', 
-          fontSize: '0.9rem', 
-          fontWeight: 'bold' 
-        }}
-      >
-        {year}
-      </div>
-      <p 
-        className="text-muted" 
-        style={{ 
-          fontWeight: '600', 
-          color: color 
-        }}
-      >
-        {title}
-      </p>
-    </div>
-  );
-
-  const ValueCard = ({ icon, title, description, delay }) => (
-    <div className="value-card-modern">
-      <div className="value-card-header">
-        <span className="value-icon">{icon}</span>
-      </div>
-      <h5 className="fw-bold mb-3">{title}</h5>
-      <p className="text-muted small">{description}</p>
-    </div>
-  );
-
-
+  // ValueCard composant commenté - unused
+  // const ValueCard = ({ icon, title, description, delay }) => (
+  //   <div className="value-card-modern">
+  //     <div className="value-card-header">
+  //       <span className="value-icon">{icon}</span>
+  //     </div>
+  //     <h5 className="fw-bold mb-3">{title}</h5>
+  //     <p className="text-muted small">{description}</p>
+  //   </div>
+  // );
 
   // ==================== RENDER ====================
 
@@ -484,11 +452,13 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                   className="slide-up" 
                   style={{ animationDelay: value.delay }}
                 >
-                  <ValueCard
-                    icon={value.icon}
-                    title={value.title}
-                    description={value.description}
-                  />
+                  <div className="value-card-modern">
+                    <div className="value-card-header">
+                      <span className="value-icon">{value.icon}</span>
+                    </div>
+                    <h5 className="fw-bold mb-3">{value.title}</h5>
+                    <p className="text-muted small">{value.description}</p>
+                  </div>
                 </Col>
               ))}
             </Row>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Table, Badge, Spinner, Form, Button, Alert } from 'react-bootstrap';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Container, Table, Badge, Spinner, Form, Alert } from 'react-bootstrap';
 import api from '../services/api';
 
 const OrdersManagement = () => {
@@ -9,19 +9,7 @@ const OrdersManagement = () => {
   const [filterStatus, setFilterStatus] = useState('');
   const [sortOrder, setSortOrder] = useState('oldest');
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
-  useEffect(() => {
-    setOrders(prevOrders => [...prevOrders].sort((a, b) => {
-      const dateA = new Date(a.created_at);
-      const dateB = new Date(b.created_at);
-      return sortOrder === 'oldest' ? dateA - dateB : dateB - dateA;
-    }));
-  }, [sortOrder]);
-
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     try {
       const response = await api.get('/commandes');
       console.log("Réponse brute:", response);
@@ -55,7 +43,11 @@ const OrdersManagement = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [sortOrder]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
 
   const getStatusBadge = (status) => {
     const badges = {

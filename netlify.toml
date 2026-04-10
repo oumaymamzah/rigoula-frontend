@@ -8,7 +8,7 @@
 
 # Environment variables for production build
 [build.environment]
-  REACT_APP_API_URL = "https://api.yourdomain.com"  # À remplacer par votre API URL
+  REACT_APP_API_URL = "https://rigoula-backend1.onrender.com"
 
 # Development settings
 [dev]

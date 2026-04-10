@@ -3,7 +3,7 @@ import { Container, Card, Form, Button, Alert, Tabs, Tab, Spinner } from 'react-
 import api from '../services/api';
 import { useSettings } from '../context/SettingsContext.jsx';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://rigoula-backend1.onrender.com';
 
 const resolveMediaUrl = (value) => {
   if (!value) return '';

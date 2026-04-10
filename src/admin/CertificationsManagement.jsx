@@ -32,7 +32,7 @@ const CertificationsManagement = () => {
     }
     
     // Si c'est juste un nom de fichier, ajouter le chemin
-    const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const baseUrl = process.env.REACT_APP_API_URL || 'https://rigoula-backend1.onrender.com';
     return `${baseUrl}/uploads/products/${imagePath}`;
   };
 

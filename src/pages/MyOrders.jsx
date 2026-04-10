@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Badge, Spinner, Table } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Spinner } from 'react-bootstrap';
 import api from '../services/api';
 
 const MyOrders = () => {

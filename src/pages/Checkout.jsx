@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import api from '../services/api';
@@ -20,11 +20,7 @@ const Checkout = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
-
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       const response = await api.get('/panier');
       setCartItems(response.data.data);
@@ -38,7 +34,11 @@ const Checkout = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    fetchCart();
+  }, [fetchCart]);
 
   const handleChange = (e) => {
     setFormData({

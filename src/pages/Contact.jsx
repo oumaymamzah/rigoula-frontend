@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-import { useSettings } from '../context/SettingsContext.jsx';
 import api from '../services/api';
 
 const Contact = () => {
-  const { settings } = useSettings();
   const [formData, setFormData] = useState({
     nom: '',
     email: '',

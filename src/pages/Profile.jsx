@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import api from '../services/api';
 
 const Profile = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
