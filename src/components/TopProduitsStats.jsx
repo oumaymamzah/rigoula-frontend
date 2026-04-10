@@ -79,9 +79,11 @@ export default function TopProduitsStats() {
         setProduits(correctedData);
 
         // ── Donut Chart ──
-        if (donutRef.current) {
+        if (donutRef.current && donutRef.current.getContext) {
           if (donutChart.current) donutChart.current.destroy();
-          donutChart.current = new Chart(donutRef.current, {
+          const ctx = donutRef.current.getContext("2d");
+          if (ctx) {
+            donutChart.current = new Chart(ctx, {
             type: "doughnut",
             data: {
               labels: correctedData.map(p => p.name),
@@ -106,6 +108,7 @@ export default function TopProduitsStats() {
               cutout: "68%",
             },
           });
+          }
         }
 
       } catch (err) {
@@ -174,9 +177,20 @@ export default function TopProduitsStats() {
       <div style={styles.card}>
         <p style={styles.cardTitle}>Répartition des ventes</p>
 
-        {/* Donut */}
-        <div style={{ position: "relative", height: 200 }}>
-          <canvas ref={donutRef}></canvas>
+        {/* Donut avec hauteur et width explicites */}
+        <div style={{ 
+          position: "relative", 
+          height: 240,
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "240px"
+        }}>
+          <canvas 
+            ref={donutRef}
+            style={{ maxHeight: "220px", maxWidth: "100%" }}
+          ></canvas>
         </div>
 
         {/* Légende */}
