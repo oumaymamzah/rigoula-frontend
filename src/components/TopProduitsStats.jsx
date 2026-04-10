@@ -78,38 +78,40 @@ export default function TopProduitsStats() {
 
         setProduits(correctedData);
 
-        // ── Donut Chart ──
-        if (donutRef.current && donutRef.current.getContext) {
-          if (donutChart.current) donutChart.current.destroy();
-          const ctx = donutRef.current.getContext("2d");
-          if (ctx) {
-            donutChart.current = new Chart(ctx, {
-            type: "doughnut",
-            data: {
-              labels: correctedData.map(p => p.name),
-              datasets: [{
-                data:            correctedData.map(p => p.pct_donut || p.pct),
-                backgroundColor: DONUT_COLORS,
-                borderWidth:     0,
-                hoverOffset:     6,
-              }],
-            },
-            options: {
-              responsive:          true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false },
-                tooltip: {
-                  callbacks: {
-                    label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
-                  },
+        // ── Donut Chart ── avec délai pour que le DOM se mette à jour
+        setTimeout(() => {
+          if (donutRef.current && donutRef.current.getContext) {
+            if (donutChart.current) donutChart.current.destroy();
+            const ctx = donutRef.current.getContext("2d");
+            if (ctx) {
+              donutChart.current = new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                  labels: correctedData.map(p => p.name),
+                  datasets: [{
+                    data:            correctedData.map(p => p.pct_donut || p.pct),
+                    backgroundColor: DONUT_COLORS,
+                    borderWidth:     0,
+                    hoverOffset:     6,
+                  }],
                 },
-              },
-              cutout: "68%",
-            },
-          });
+                options: {
+                  responsive:          true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                      callbacks: {
+                        label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
+                      },
+                    },
+                  },
+                  cutout: "68%",
+                },
+              });
+            }
           }
-        }
+        }, 0);
 
       } catch (err) {
         console.error(err);
