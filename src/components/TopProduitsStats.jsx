@@ -78,40 +78,38 @@ export default function TopProduitsStats() {
 
         setProduits(correctedData);
 
-        // ── Donut Chart ── avec délai pour que le DOM se mette à jour
-        setTimeout(() => {
-          if (donutRef.current && donutRef.current.getContext) {
-            if (donutChart.current) donutChart.current.destroy();
-            const ctx = donutRef.current.getContext("2d");
-            if (ctx) {
-              donutChart.current = new Chart(ctx, {
-                type: "doughnut",
-                data: {
-                  labels: correctedData.map(p => p.name),
-                  datasets: [{
-                    data:            correctedData.map(p => p.pct_donut || p.pct),
-                    backgroundColor: DONUT_COLORS,
-                    borderWidth:     0,
-                    hoverOffset:     6,
-                  }],
-                },
-                options: {
-                  responsive:          true,
-                  maintainAspectRatio: false,
-                  plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                      callbacks: {
-                        label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
-                      },
+        // ── Donut Chart ──
+        if (donutRef.current && donutRef.current.getContext) {
+          if (donutChart.current) donutChart.current.destroy();
+          const ctx = donutRef.current.getContext("2d");
+          if (ctx) {
+            donutChart.current = new Chart(ctx, {
+              type: "doughnut",
+              data: {
+                labels: correctedData.map(p => p.name),
+                datasets: [{
+                  data:            correctedData.map(p => p.pct_donut || p.pct),
+                  backgroundColor: DONUT_COLORS,
+                  borderWidth:     0,
+                  hoverOffset:     6,
+                }],
+              },
+              options: {
+                responsive:          true,
+                maintainAspectRatio: true,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
                     },
                   },
-                  cutout: "68%",
                 },
-              });
-            }
+                cutout: "68%",
+              },
+            });
           }
-        }, 0);
+        }
 
       } catch (err) {
         console.error(err);
@@ -179,19 +177,17 @@ export default function TopProduitsStats() {
       <div style={styles.card}>
         <p style={styles.cardTitle}>Répartition des ventes</p>
 
-        {/* Donut avec hauteur et width explicites */}
+        {/* Donut avec attributs width/height explicites */}
         <div style={{ 
           position: "relative", 
           height: 240,
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "240px"
+          width: "100%"
         }}>
           <canvas 
             ref={donutRef}
-            style={{ maxHeight: "220px", maxWidth: "100%" }}
+            width={400}
+            height={240}
+            style={{ display: "block", margin: "0 auto" }}
           ></canvas>
         </div>
 
