@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { Chart, registerables } from "chart.js";
 import api from "../services/api";
 Chart.register(...registerables);
@@ -78,39 +78,6 @@ export default function TopProduitsStats() {
 
         setProduits(correctedData);
 
-        // ── Donut Chart ──
-        if (donutRef.current && donutRef.current.getContext) {
-          if (donutChart.current) donutChart.current.destroy();
-          const ctx = donutRef.current.getContext("2d");
-          if (ctx) {
-            donutChart.current = new Chart(ctx, {
-              type: "doughnut",
-              data: {
-                labels: correctedData.map(p => p.name),
-                datasets: [{
-                  data:            correctedData.map(p => p.pct_donut || p.pct),
-                  backgroundColor: DONUT_COLORS,
-                  borderWidth:     0,
-                  hoverOffset:     6,
-                }],
-              },
-              options: {
-                responsive:          true,
-                maintainAspectRatio: true,
-                plugins: {
-                  legend: { display: false },
-                  tooltip: {
-                    callbacks: {
-                      label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
-                    },
-                  },
-                },
-                cutout: "68%",
-              },
-            });
-          }
-        }
-
       } catch (err) {
         console.error(err);
         setError("Erreur chargement données.");
@@ -122,6 +89,44 @@ export default function TopProduitsStats() {
     fetchData();
     return () => { donutChart.current?.destroy(); };
   }, []);
+
+  // ── Créer le chart UNE FOIS que les produits sont mis à jour ──
+  useLayoutEffect(() => {
+    if (!produits.length || !donutRef.current) return;
+
+    if (donutChart.current) donutChart.current.destroy();
+    
+    const ctx = donutRef.current?.getContext("2d");
+    if (ctx) {
+      donutChart.current = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: produits.map(p => p.name),
+          datasets: [{
+            data:            produits.map(p => p.pct_donut || p.pct),
+            backgroundColor: DONUT_COLORS,
+            borderWidth:     0,
+            hoverOffset:     6,
+          }],
+        },
+        options: {
+          responsive:          true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ` ${ctx.label} : ${ctx.parsed}%`,
+              },
+            },
+          },
+          cutout: "68%",
+        },
+      });
+    }
+
+    return () => { donutChart.current?.destroy(); };
+  }, [produits]);
 
   if (loading) return (
     <div style={styles.center}>
