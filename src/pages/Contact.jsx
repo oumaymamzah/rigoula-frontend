@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import api from '../services/api';
+import { useSettings } from '../context/SettingsContext.jsx';
 
 const Contact = () => {
+  const { settings } = useSettings();
   const [formData, setFormData] = useState({
     nom: '',
     email: '',
@@ -160,8 +162,7 @@ const Contact = () => {
                   </div>
                   <h6 className="fw-bold mb-2" style={{ color: '#10b981', fontSize: '1.1rem' }}>Adresse</h6>
                   <p className="mb-0 text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
-                    Rue Mohammed EL JAMMOUSSI, Immeuble Elkods,<br />
-                    Magasin N°3, 3049 Sfax, Tunisie
+                    {settings.contact_address || 'Rue Mohammed EL JAMMOUSSI, Immeuble Elkods, Magasin N°3, 3049 Sfax, Tunisie'}
                   </p>
                 </Card.Body>
               </Card>
@@ -173,7 +174,9 @@ const Contact = () => {
                     <span style={{ fontSize: '2.5rem' }}>📞</span>
                   </div>
                   <h6 className="fw-bold mb-2" style={{ color: '#10b981', fontSize: '1.1rem' }}>Téléphone</h6>
-                  <p className="mb-0 text-muted fw-semibold" style={{ fontSize: '0.95rem' }}>+216 29 550 026</p>
+                  <p className="mb-0 text-muted fw-semibold" style={{ fontSize: '0.95rem' }}>
+                    {settings.contact_phone || '+216 29 550 026'}
+                  </p>
                 </Card.Body>
               </Card>
 
@@ -184,7 +187,9 @@ const Contact = () => {
                     <span style={{ fontSize: '2.5rem' }}>✉️</span>
                   </div>
                   <h6 className="fw-bold mb-2" style={{ color: '#10b981', fontSize: '1.1rem' }}>Email</h6>
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>triki.mouna77@gmail.com</p>
+                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>
+                    {settings.contact_email || 'triki.mouna77@gmail.com'}
+                  </p>
                 </Card.Body>
               </Card>
 
