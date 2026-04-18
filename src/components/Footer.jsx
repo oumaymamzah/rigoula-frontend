@@ -2,21 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSettings } from '../context/SettingsContext.jsx';
-
-const API_BASE_URL = 'http://localhost:5000';
-
-const resolveMediaUrl = (value) => {
-  if (!value) return '';
-  if (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('data:')) return value;
-  const uploadsIndex = value.indexOf('/uploads/');
-  if (uploadsIndex !== -1) {
-    return `${API_BASE_URL}${value.slice(uploadsIndex)}`;
-  } 
-  if (value.startsWith('uploads/')) {
-    return `${API_BASE_URL}/${value}`;
-  }
-  return value;
-};
+import { resolveMediaUrl } from '../utils/media';
 
 const Footer = () => {
   const { settings } = useSettings();
@@ -24,7 +10,7 @@ const Footer = () => {
   const displayName = (settings.site_name || 'RIGOULA').toUpperCase();
 
   const logoValue = settings.site_logo || '';
-  const isLogoImage = logoValue.startsWith('http') || logoValue.includes('/uploads');
+  const isLogoImage = logoValue.startsWith('http') || logoValue.startsWith('data:image/') || logoValue.includes('/uploads') || logoValue.startsWith('/api/');
   const logoSrc = resolveMediaUrl(logoValue);
 
   const socialLinks = [

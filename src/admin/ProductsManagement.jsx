@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, Spinner, Badge, Image } from 'react-bootstrap';
 import productService from '../services/productService';
 import api from '../services/api';
+import { resolveMediaUrl } from '../utils/media';
 
 const ProductsManagement = () => {
   const [products, setProducts] = useState([]);
@@ -59,7 +60,7 @@ const ProductsManagement = () => {
         category_id: product.category_id || '',
         image: product.image || ''
       });
-      setImagePreview(product.image);
+      setImagePreview(resolveMediaUrl(product.image));
     } else {
       setEditingProduct(null);
       setFormData({
@@ -209,7 +210,7 @@ const ProductsManagement = () => {
                   <td>
                     {product.image ? (
                       <Image 
-                        src={product.image} 
+                        src={resolveMediaUrl(product.image)} 
                         alt={product.nom}
                         rounded
                         style={{ width: '60px', height: '60px', objectFit: 'cover' }}

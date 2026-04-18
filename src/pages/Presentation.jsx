@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useSettings } from '../context/SettingsContext.jsx';
+import { resolveMediaUrl } from '../utils/media';
 
 const Presentation = () => {
   const { settings } = useSettings();
@@ -38,7 +39,7 @@ const Presentation = () => {
               <div className="presentation-image rounded shadow">
                 {settings.presentation_image ? (
                   <img 
-                    src={settings.presentation_image} 
+                    src={resolveMediaUrl(settings.presentation_image)} 
                     alt="Présentation Rigoula"
                     className="img-fluid rounded"
                     style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}

@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button, Spinner, Form } from 'react-bootstra
 import productService from '../services/productService';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext.jsx';
+import { resolveMediaUrl } from '../utils/media';
 
 const Products = () => {
   const { isAdmin } = useAuth();
@@ -126,7 +127,7 @@ const Products = () => {
                       {product.image ? (
                         <Card.Img
                           variant="top"
-                          src={product.image}
+                          src={resolveMediaUrl(product.image)}
                           alt={product.nom}
                           className="card-img-top"
                           style={{

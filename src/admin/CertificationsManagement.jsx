@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, Spinner, Row, Col } from 'react-bootstrap';
 import api from '../services/api';
+import { resolveMediaUrl } from '../utils/media';
 
 const CertificationsManagement = () => {
   const [certifications, setCertifications] = useState([]);
@@ -25,15 +26,8 @@ const CertificationsManagement = () => {
   // Helper pour construire l'URL complète de l'image
   const getImageUrl = (imagePath) => {
     if (!imagePath) return null;
-    
-    // Si c'est déjà une URL complète
-    if (imagePath.startsWith('http')) {
-      return imagePath;
-    }
-    
-    // Si c'est juste un nom de fichier, ajouter le chemin
-    const baseUrl = process.env.REACT_APP_API_URL || 'https://rigoula-backend1.onrender.com';
-    return `${baseUrl}/uploads/products/${imagePath}`;
+
+    return resolveMediaUrl(imagePath);
   };
 
   // Helper pour parser les images (peut être JSON array, comma-separated, ou simple string)

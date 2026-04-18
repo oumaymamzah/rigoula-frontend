@@ -3,21 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Card, Badge, Spinner, Tabs, Tab, Modal } from 'react-bootstrap';
 import { useSettings } from '../context/SettingsContext.jsx';
 import api from '../services/api';
-
-const API_BASE_URL = 'https://rigoula-backend1.onrender.com';
-
-const resolveMediaUrl = (value) => {
-  if (!value) return '';
-  if (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('data:')) return value;
-  const uploadsIndex = value.indexOf('/uploads/');
-  if (uploadsIndex !== -1) {
-    return `${API_BASE_URL}${value.slice(uploadsIndex)}`;
-  }
-  if (value.startsWith('uploads/')) {
-    return `${API_BASE_URL}/${value}`;
-  }
-  return value;
-};
+import { resolveMediaUrl } from '../utils/media';
 
 const LandingPage = () => {
   const { settings } = useSettings();
@@ -250,7 +236,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               <div className="hero-graphic">
                 {settings.site_logo && (
                   <div className="floating-element">
-                    {settings.site_logo.startsWith('http') || settings.site_logo.includes('/uploads') ? (
+                    {settings.site_logo.startsWith('http') || settings.site_logo.startsWith('data:image/') || settings.site_logo.includes('/uploads') || settings.site_logo.startsWith('/api/') ? (
                       <img 
                         src={resolveMediaUrl(settings.site_logo)} 
                         alt="Logo Rigoula" 
@@ -356,7 +342,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
     <Col lg={6} className="slide-up" style={{ animationDelay: '0.2s' }}>
       {settings.presentation_image ? (
         <img
-          src={settings.presentation_image}
+          src={resolveMediaUrl(settings.presentation_image)}
           alt="Notre histoire - Rigoula"
           style={{
             width: '100%',
@@ -514,7 +500,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                                 className="event-image"
                                 style={{
                                   background: event.image
-                                    ? `url(${API_BASE_URL}/uploads/products/${event.image}) center/cover`
+                                    ? `url(${resolveMediaUrl(event.image)}) center/cover`
                                     : 'linear-gradient(135deg, #10b981 0%, #16a34a 100%)',
                                 }}
                               >
@@ -591,9 +577,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                           }
                         }
                         const firstImage = imagesList.length > 0 ? imagesList[0] : null;
-                        const imageUrl = firstImage && !firstImage.startsWith('http')
-                          ? `${API_BASE_URL}/uploads/products/${firstImage}`
-                          : firstImage;
+                        const imageUrl = firstImage ? resolveMediaUrl(firstImage) : null;
                         
                         return (
                           <Col key={cert.id} md={6} lg={4} className="slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
@@ -750,7 +734,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
             if (imagesList.length === 0) return null;
             
             const currentImg = imagesList[currentImageIndex];
-            const imgUrl = currentImg.startsWith('http') ? currentImg : `${API_BASE_URL}/uploads/products/${currentImg}`;
+            const imgUrl = resolveMediaUrl(currentImg);
             
             return (
               <div>

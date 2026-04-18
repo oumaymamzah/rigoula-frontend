@@ -2,21 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Card, Form, Button, Alert, Tabs, Tab, Spinner } from 'react-bootstrap';
 import api from '../services/api';
 import { useSettings } from '../context/SettingsContext.jsx';
-
-const API_BASE_URL = 'https://rigoula-backend1.onrender.com';
-
-const resolveMediaUrl = (value) => {
-  if (!value) return '';
-  if (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('data:')) return value;
-  const uploadsIndex = value.indexOf('/uploads/');
-  if (uploadsIndex !== -1) {
-    return `${API_BASE_URL}${value.slice(uploadsIndex)}`;
-  }
-  if (value.startsWith('uploads/')) {
-    return `${API_BASE_URL}/${value}`;
-  }
-  return value;
-};
+import { resolveMediaUrl } from '../utils/media';
 
 const SiteSettings = () => {
   const { refreshSettings } = useSettings();
@@ -362,7 +348,7 @@ const SiteSettings = () => {
                     <div className="text-center mb-4 p-4 bg-light rounded">
                       <p className="text-muted mb-2">Image actuelle :</p>
                       <img 
-                        src={settings.presentation_image} 
+                        src={resolveMediaUrl(settings.presentation_image)} 
                         alt="Présentation" 
                         style={{ maxWidth: '300px', maxHeight: '200px', objectFit: 'cover', borderRadius: '8px' }}
                       />
@@ -522,7 +508,7 @@ const SiteSettings = () => {
                   {settings.site_logo && !logoPreview && (
                     <div className="text-center mb-4 p-4 bg-light rounded">
                       <p className="text-muted mb-2">Logo actuel :</p>
-                      {settings.site_logo.startsWith('http') || settings.site_logo.includes('/uploads') ? (
+                      {settings.site_logo.startsWith('http') || settings.site_logo.startsWith('data:image/') || settings.site_logo.includes('/uploads') || settings.site_logo.startsWith('/api/') ? (
                         <img 
                           src={resolveMediaUrl(settings.site_logo)} 
                           alt="Logo" 

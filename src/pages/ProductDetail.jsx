@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button, Spinner, Alert, Form } from 'react-b
 import productService from '../services/productService';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext.jsx';
+import { resolveMediaUrl } from '../utils/media';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -89,7 +90,7 @@ const ProductDetail = () => {
               >
                 {product.image ? (
                   <Card.Img 
-                    src={product.image} 
+                    src={resolveMediaUrl(product.image)} 
                     alt={product.nom}
                     style={{ 
                       height: '400px', 

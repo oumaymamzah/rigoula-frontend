@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, Spinner, Row, Col } from 'react-bootstrap';
 import api from '../services/api';
+import { resolveMediaUrl } from '../utils/media';
 
 const EventsManagement = () => {
   const [events, setEvents] = useState([]);
@@ -43,7 +44,7 @@ const EventsManagement = () => {
         lieu: event.lieu || '',
         image: event.image || ''
       });
-      setImagePreview(event.image || '');
+      setImagePreview(resolveMediaUrl(event.image || ''));
     } else {
       setEditingEvent(null);
       setFormData({

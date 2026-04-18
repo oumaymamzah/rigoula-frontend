@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Spinner, Badge, Tabs, Tab, Button, Modal } from 'react-bootstrap';
 import api from '../services/api';
-
-const API_BASE_URL = 'http://localhost:5000';
+import { resolveMediaUrl } from '../utils/media';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -125,7 +124,7 @@ const Events = () => {
                           style={{
                             height: '220px',
                             background: event.image
-                              ? `url(${API_BASE_URL}/uploads/products/${event.image}) center/cover`
+                              ? `url(${resolveMediaUrl(event.image)}) center/cover`
                               : 'linear-gradient(135deg, #10b981 0%, #16a34a 100%)',
                             position: 'relative',
                             borderRadius: '0.375rem 0.375rem 0 0'
@@ -232,9 +231,7 @@ const Events = () => {
                       }
                     }
                     const firstImage = imagesList.length > 0 ? imagesList[0] : null;
-                    const imageUrl = firstImage && !firstImage.startsWith('http')
-                      ? `${API_BASE_URL}/uploads/products/${firstImage}`
-                      : firstImage;
+                    const imageUrl = firstImage ? resolveMediaUrl(firstImage) : firstImage;
                     
                     return (
                       <Col key={cert.id} md={6} lg={4} className="mb-4">
@@ -412,7 +409,7 @@ const Events = () => {
                 if (imagesList.length === 0) return null;
                 
                 const currentImg = imagesList[currentImageIndex];
-                const imgUrl = currentImg.startsWith('http') ? currentImg : `${API_BASE_URL}/uploads/products/${currentImg}`;
+                const imgUrl = resolveMediaUrl(currentImg);
                 
                 return (
                   <div>
