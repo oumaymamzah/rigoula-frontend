@@ -13,7 +13,6 @@ const CertificationsManagement = () => {
 
   const [formData, setFormData] = useState({
     titre: '',
-    description: '',
     organisme: '',
     date_obtention: '',
     images: []
@@ -133,7 +132,6 @@ const CertificationsManagement = () => {
       setEditingCert(certWithParsedImages);
       setFormData({
         titre: cert.titre,
-        description: cert.description || '',
         organisme: cert.organisme || '',
         date_obtention: cert.date_obtention?.split('T')[0] || '',
         images: parsedImages // Garder les noms pour upload
@@ -142,7 +140,6 @@ const CertificationsManagement = () => {
       console.log('🟡 MODE CRÉATION - Nouveau formulaire');
       setFormData({
         titre: '',
-        description: '',
         organisme: '',
         date_obtention: '',
         images: []
@@ -157,7 +154,6 @@ const CertificationsManagement = () => {
     setEditingCert(null);
     setFormData({
       titre: '',
-      description: '',
       organisme: '',
       date_obtention: '',
       images: []
@@ -188,7 +184,6 @@ const CertificationsManagement = () => {
     try {
       const data = new FormData();
       data.append('titre', formData.titre);
-      data.append('description', formData.description);
       data.append('organisme', formData.organisme);
       data.append('date_obtention', formData.date_obtention);
       
@@ -225,7 +220,6 @@ const CertificationsManagement = () => {
 
       console.log('FormData à envoyer:', {
         titre: formData.titre,
-        description: formData.description,
         organisme: formData.organisme,
         date_obtention: formData.date_obtention,
         imagesToKeep: existingImages,
@@ -404,17 +398,6 @@ const CertificationsManagement = () => {
                   value={formData.titre}
                   onChange={handleChange}
                   required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
                 />
               </Form.Group>
 

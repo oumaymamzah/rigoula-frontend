@@ -168,7 +168,7 @@ const UsersManagement = () => {
                   <td>{user.telephone || '-'}</td>
                   <td>
                     <Badge bg={user.role === 'admin' ? 'danger' : 'primary'}>
-                      {user.role === 'admin' ? '👑 Admin' : '👤 Client'}
+                      {user.role === 'admin' ? ' Admin' : ' Client'}
                     </Badge>
                   </td>
                   <td>

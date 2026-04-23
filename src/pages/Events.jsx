@@ -24,7 +24,7 @@ const Events = () => {
       
       console.log('📋 Certifications reçues:', certsRes.data);
       certsRes.data.data.forEach((cert, idx) => {
-        console.log(`\n🏆 Certification ${idx + 1}:`);
+        console.log(`\n Certification ${idx + 1}:`);
         console.log('   ID:', cert.id);
         console.log('   Titre:', cert.titre);
         console.log('   Images field:', cert.images);
@@ -101,7 +101,7 @@ const Events = () => {
             eventKey="events" 
             title={
               <span className="fw-bold">
-                📅 Événements ({events.length})
+                 Événements ({events.length})
               </span>
             }
           >

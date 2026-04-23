@@ -176,7 +176,7 @@ const SiteSettings = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('💾 Tentative de sauvegarde...');
+    console.log(' Tentative de sauvegarde...');
     console.log('📦 Données à envoyer:', settings);
     
     setSaving(true);
@@ -235,7 +235,7 @@ const SiteSettings = () => {
         <Form onSubmit={handleSubmit}>
           <Tabs defaultActiveKey="general" className="mb-4">
             {/* Onglet Général */}
-            <Tab eventKey="general" title="🏠 Général">
+            <Tab eventKey="general" title=" Général">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Informations générales</h5>
@@ -275,7 +275,7 @@ const SiteSettings = () => {
             </Tab>
 
             {/* Onglet Page d'accueil */}
-            <Tab eventKey="home" title="🏡 Page d'accueil">
+            <Tab eventKey="home" title=" Page d'accueil">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Section Hero</h5>
@@ -314,8 +314,8 @@ const SiteSettings = () => {
               </Card>
             </Tab>
 
-            {/* Onglet Présentation */}
-            <Tab eventKey="about" title="📄 Présentation">
+            {/* Onglet À propos */}
+            <Tab eventKey="about" title=" À propos">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Page À propos</h5>
@@ -409,7 +409,7 @@ const SiteSettings = () => {
             </Tab>
 
             {/* Onglet Contact */}
-            <Tab eventKey="contact" title="📞 Contact">
+            <Tab eventKey="contact" title=" Contact">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Informations de contact</h5>
@@ -458,7 +458,7 @@ const SiteSettings = () => {
             </Tab>
 
             {/* Onglet Réseaux sociaux */}
-            <Tab eventKey="social" title="📱 Réseaux sociaux">
+            <Tab eventKey="social" title=" Réseaux sociaux">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Liens des réseaux sociaux</h5>
@@ -499,7 +499,7 @@ const SiteSettings = () => {
             </Tab>
 
             {/* Onglet Logo */}
-            <Tab eventKey="logo" title="🎨 Logo">
+            <Tab eventKey="logo" title=" Logo">
               <Card className="border-0 shadow-sm mb-4">
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-4">Logo du site</h5>
