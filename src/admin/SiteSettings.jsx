@@ -177,7 +177,7 @@ const SiteSettings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(' Tentative de sauvegarde...');
-    console.log('📦 Données à envoyer:', settings);
+    console.log(' Données à envoyer:', settings);
     
     setSaving(true);
     setMessage({ type: '', text: '' });
@@ -267,7 +267,7 @@ const SiteSettings = () => {
                       disabled={saving}
                       style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                     >
-                      {saving ? 'Enregistrement...' : '💾 Enregistrer Général'}
+                      {saving ? 'Enregistrement...' : ' Enregistrer informations Général'}
                     </Button>
                   </div>
                 </Card.Body>
@@ -307,7 +307,7 @@ const SiteSettings = () => {
                       disabled={saving}
                       style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                     >
-                      {saving ? 'Enregistrement...' : '💾 Enregistrer Page d\'accueil'}
+                      {saving ? 'Enregistrement...' : ' Enregistrer Page d\'accueil'}
                     </Button>
                   </div>
                 </Card.Body>
@@ -388,7 +388,7 @@ const SiteSettings = () => {
                         disabled={saving}
                         style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                       >
-                        {saving ? '⏳ Enregistrement...' : '💾 Enregistrer image'}
+                        {saving ? '⏳ Enregistrement...' : ' Enregistrer image'}
                       </Button>
                     </div>
                   )}
@@ -401,7 +401,7 @@ const SiteSettings = () => {
                       disabled={saving}
                       style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                     >
-                      {saving ? 'Enregistrement...' : '💾 Enregistrer Présentation'}
+                      {saving ? 'Enregistrement...' : ' Enregistrer page à propos '}
                     </Button>
                   </div>
                 </Card.Body>
@@ -450,7 +450,7 @@ const SiteSettings = () => {
                       disabled={saving}
                       style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                     >
-                      {saving ? 'Enregistrement...' : '💾 Enregistrer Contact'}
+                      {saving ? 'Enregistrement...' : ' Enregistrer Contact'}
                     </Button>
                   </div>
                 </Card.Body>
@@ -491,7 +491,7 @@ const SiteSettings = () => {
                       disabled={saving}
                       style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                     >
-                      {saving ? 'Enregistrement...' : '💾 Enregistrer Réseaux sociaux'}
+                      {saving ? 'Enregistrement...' : ' Enregistrer Réseaux sociaux'}
                     </Button>
                   </div>
                 </Card.Body>
@@ -553,7 +553,7 @@ const SiteSettings = () => {
                         disabled={saving}
                         style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                       >
-                        {saving ? '⏳ Enregistrement...' : '💾 Enregistrer'}
+                        {saving ? '⏳ Enregistrement...' : ' Enregistrer'}
                       </Button>
                     </div>
                   )}

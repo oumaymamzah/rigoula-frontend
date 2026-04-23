@@ -479,7 +479,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               {/* ONGLET ÉVÉNEMENTS */}
               <Tab 
                 eventKey="events" 
-                title={<span className="fw-bold">📅 Événements ({events.length})</span>}
+                title={<span className="fw-bold"> Événements ({events.length})</span>}
               >
                 <div className="py-4">
                   {events.length === 0 ? (
@@ -550,7 +550,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               {/* ONGLET CERTIFICATIONS */}
               <Tab 
                 eventKey="certifications" 
-                title={<span className="fw-bold">🏆 Certifications ({certifications.length})</span>}
+                title={<span className="fw-bold"> Certifications ({certifications.length})</span>}
               >
                 <div className="py-4">
                   {certifications.length === 0 ? (
