@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import productService from '../services/productService';
+import api from '../services/api';
 
 function ChatbotWidget() {
   const botName = 'Rigoula AI';
@@ -10,10 +11,13 @@ function ChatbotWidget() {
   const [products, setProducts] = useState([]);
   const [discussProduct, setDiscussProduct] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState('');
+  const [settings, setSettings] = useState(null);
+  const [certifications, setCertifications] = useState([]);
+  const [events, setEvents] = useState([]);
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: 'Bonjour, je suis Rigoula AI. Posez-moi une question sur la boutique.'
+      text: 'Bonjour, je suis Rigoula AI. Posez-moi une question sur la platforme.'
     }
   ]);
 
@@ -23,26 +27,44 @@ function ChatbotWidget() {
   useEffect(() => {
     let mounted = true;
 
-    const loadProducts = async () => {
+    const loadAllData = async () => {
       try {
         setProductsLoading(true);
-        const result = await productService.getAllProducts({});
-        const list = Array.isArray(result?.data) ? result.data : [];
+        
+        // Charger les produits
+        const productsResult = await productService.getAllProducts({});
+        const productsList = Array.isArray(productsResult?.data) ? productsResult.data : [];
+
+        // Charger les settings
+        const settingsResult = await api.get('/settings');
+        const settingsData = settingsResult.data?.data || settingsResult.data || null;
+
+        // Charger les certifications
+        const certificationsResult = await api.get('/certifications');
+        const certificationsList = Array.isArray(certificationsResult.data?.data) ? certificationsResult.data.data : [];
+
+        // Charger les événements
+        const eventsResult = await api.get('/evenements');
+        const eventsList = Array.isArray(eventsResult.data?.data) ? eventsResult.data.data : [];
 
         if (mounted) {
-          setProducts(list);
-          if (list.length > 0) {
-            setSelectedProductId(String(list[0].id));
+          setProducts(productsList);
+          setSettings(settingsData);
+          setCertifications(certificationsList);
+          setEvents(eventsList);
+          
+          if (productsList.length > 0) {
+            setSelectedProductId(String(productsList[0].id));
           }
         }
       } catch (error) {
-        console.error('Erreur chargement produits pour chatbot:', error);
+        console.error('Erreur chargement données chatbot:', error);
       } finally {
         if (mounted) setProductsLoading(false);
       }
     };
 
-    loadProducts();
+    loadAllData();
     return () => {
       mounted = false;
     };
@@ -113,8 +135,18 @@ function ChatbotWidget() {
 
     try {
       const enrichedPrompt = discussProduct && selectedProduct
-        ? `Contexte produit depuis la base de donnees:\nNom produit: ${selectedProduct.nom || ''}\nDescription produit: ${selectedProduct.description || ''}\n\nMessage utilisateur: ${question}\n\nReponds en francais, de facon claire et utile, en tenant compte du produit.`
-        : question;
+        ? `Contexte produit depuis la base de donnees:\nNom produit: ${selectedProduct.nom || ''}\nPrix: ${selectedProduct.prix || 'N/A'} DT\nDescription produit: ${selectedProduct.description || ''}\n\nMessage utilisateur: ${question}\n\nReponds en francais, de facon claire et utile, en tenant compte du produit.`
+        : `Contexte site:\n${
+            settings?.histoire ? `Histoire du site: ${settings.histoire}\n` : ''
+          }${
+            certifications && certifications.length > 0
+              ? `Certifications: ${certifications.map((c) => `${c.titre} (${c.organisme})`).join(', ')}\n`
+              : ''
+          }${
+            events && events.length > 0
+              ? `Événements: ${events.map((e) => `${e.titre} - ${e.date_evenement?.split('T')[0]}`).join(', ')}\n`
+              : ''
+          }\nMessage utilisateur: ${question}\n\nReponds en francais, de facon claire et utile, en tenant compte des informations du site.`;
 
       const answer = await askGemini(enrichedPrompt);
       setMessages((prev) => [...prev, { role: 'bot', text: answer }]);
