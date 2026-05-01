@@ -9,10 +9,10 @@ const PRODUCT_STYLES = [
   { color: "#e67e22", bg: "#fef0e6", emoji: "🥕" },
   { color: "#27ae60", bg: "#e9f7ef", emoji: "🥗" },
   { color: "#8e44ad", bg: "#f4ecf7", emoji: "🧅" },
-  { color: "#e74c3c", bg: "#fdecea", emoji: "🫑" },
+  { color: "#888780", bg: "#fdecea", emoji: "🫑" },
 ];
 
-const DONUT_COLORS = ["#27ae60", "#e67e22", "#e91e8c", "#8e44ad", "#888780"];
+const DONUT_COLORS = ["#e74c3c", "#e67e22", "#27ae60", "#8e44ad", "#888780"];
 
 export default function TopProduitsStats() {
   const donutRef   = useRef(null);

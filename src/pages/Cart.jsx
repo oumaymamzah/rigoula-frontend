@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Button, Table, Alert, Spinner, Form } from 'react-bootstrap';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext.jsx';
+import { resolveMediaUrl } from '../utils/media';
 
 const Cart = () => {
   const { isAdmin } = useAuth();
@@ -133,7 +134,7 @@ const Cart = () => {
                                 >
                                   {item.image ? (
                                     <img 
-                                      src={item.image} 
+                                      src={resolveMediaUrl(item.image)} 
                                       alt={item.nom}
                                       style={{ width: '60px', height: '60px', objectFit: 'cover' }}
                                       className="rounded"

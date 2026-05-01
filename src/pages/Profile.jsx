@@ -246,7 +246,7 @@ const Profile = () => {
                 <p className="mb-0">
                   <strong>Rôle :</strong>{' '}
                   <span className={user?.role === 'admin' ? 'text-danger' : 'text-primary'}>
-                    {user?.role === 'admin' ? '👑 Administrateur' : '👤 Client'}
+                    {user?.role === 'admin' ? 'Administrateur' : 'Client'}
                   </span>
                 </p>
               </Card.Body>
