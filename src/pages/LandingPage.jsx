@@ -212,27 +212,27 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
   return (
     <div>
       {/* ===================== SECTION HOME ===================== */}
-      <section ref={homeRef} id="home" className="hero-section-enhanced py-5 fade-in-section">
-        <Container className="py-5">
+      <section ref={homeRef} id="home" className="hero-section-enhanced py-4 py-md-5 fade-in-section">
+        <Container className="py-3 py-md-5 px-3">
           <Row className="align-items-center min-vh-70">
-            <Col lg={6} className="text-white mb-4 mb-lg-0">
+            <Col xs={12} lg={6} className="text-white mb-4 mb-lg-0">
               <div className="hero-content">
-                <h1 className="hero-title display-2 fw-bold mb-4 slide-down" style={{ animationDelay: '0.1s' }}>
+                <h1 className="fw-bold mb-4 slide-down" style={{ fontSize: 'clamp(2rem, 7vw, 3.5rem)', lineHeight: '1.2', animationDelay: '0.1s' }}>
                   {settings.hero_title || 'Bienvenue chez Rigoula'}
                 </h1>
-                <p className="hero-subtitle fs-5 mb-5 slide-down" style={{ animationDelay: '0.2s' }}>
+                <p className="mb-5 slide-down" style={{ fontSize: 'clamp(1rem, 4vw, 1.25rem)', lineHeight: '1.6', animationDelay: '0.2s' }}>
                   {settings.hero_subtitle || 'Des produits agricoles biologiques frais et de qualité supérieure'}
                 </p>
                 <div className="hero-cta slide-down" style={{ animationDelay: '0.3s' }}>
                   <Link to="/produits">
-                    <Button className="hero-btn-modern fw-bold px-6 py-3 me-3">
+                    <Button className="hero-btn-modern fw-bold px-4 px-md-5 py-2 py-md-3" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)' }}>
                       Découvrir nos produits
                     </Button>
                   </Link>
                 </div>
               </div>
             </Col>
-            <Col lg={6} className="text-center zoom-in" style={{ animationDelay: '0.4s' }}>
+            <Col xs={12} lg={6} className="text-center zoom-in" style={{ animationDelay: '0.4s' }}>
               <div className="hero-graphic">
                 {settings.site_logo && (
                   <div className="floating-element">
@@ -241,14 +241,14 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                         src={resolveMediaUrl(settings.site_logo)} 
                         alt="Logo Rigoula" 
                         style={{ 
-                          maxWidth: '300%', 
-                          maxHeight: '600px', 
+                          maxWidth: '100%', 
+                          maxHeight: '400px', 
                           objectFit: 'contain',
                           filter: 'drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2))'
                         }}
                       />
                     ) : (
-                      <div style={{ fontSize: '200px', lineHeight: '1' }}>
+                      <div style={{ fontSize: 'clamp(100px, 20vw, 200px)', lineHeight: '1' }}>
                         {settings.site_logo}
                       </div>
                     )}
@@ -262,35 +262,35 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
       {/* ===================== SECTION FEATURES ===================== */}
       <section className="features-section-enhanced py-5 fade-in-section">
-        <Container>
+        <Container className="px-3">
           <div className="section-header text-center mb-5">
-            <h2 className="section-title slide-down">Pourquoi choisir Rigoula ?</h2>
+            <h2 className="section-title slide-down" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)' }}>Pourquoi choisir Rigoula ?</h2>
             <div className="title-underline"></div>
           </div>
-          <Row className="g-4">
-            <Col md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0s' }}>
+          <Row className="g-3 g-md-4">
+            <Col xs={12} md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0s' }}>
               <div className="feature-card-simple">
-                <div className="feature-icon-modern">🍊</div>
-                <h3 className="fw-bold mb-2">Produits Frais</h3>
-                <p className="text-muted small">
+                <div className="feature-icon-modern" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)' }}>🍊</div>
+                <h3 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)' }}>Produits Frais</h3>
+                <p className="text-muted small" style={{ fontSize: 'clamp(0.9rem, 2vw, 0.95rem)' }}>
                   Récoltés chaque jour pour votre santé
                 </p>
               </div>
             </Col>
-            <Col md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0.15s' }}>
+            <Col xs={12} md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0.15s' }}>
               <div className="feature-card-simple feature-card-highlight">
-                <div className="feature-icon-modern">🌿</div>
-                <h3 className="fw-bold mb-2">100% Biologique</h3>
-                <p className="text-muted small">
+                <div className="feature-icon-modern" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)' }}>🌿</div>
+                <h3 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)' }}>100% Biologique</h3>
+                <p className="text-muted small" style={{ fontSize: 'clamp(0.9rem, 2vw, 0.95rem)' }}>
                   Cultivé naturellement sans produits chimiques
                 </p>
               </div>
             </Col>
-            <Col md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0.3s' }}>
+            <Col xs={12} md={4} className="feature-card-wrapper slide-up" style={{ animationDelay: '0.3s' }}>
               <div className="feature-card-simple">
-                <div className="feature-icon-modern">🚚</div>
-                <h3 className="fw-bold mb-2">Livraison Rapide</h3>
-                <p className="text-muted small">
+                <div className="feature-icon-modern" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)' }}>🚚</div>
+                <h3 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)' }}>Livraison Rapide</h3>
+                <p className="text-muted small" style={{ fontSize: 'clamp(0.9rem, 2vw, 0.95rem)' }}>
                   Livraison en 24 à 48h dans toute la Tunisie
                 </p>
               </div>
@@ -301,16 +301,16 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
       {/* ===================== SECTION PRESENTATION ===================== */}
       <section ref={presentationRef} id="presentation" className="presentation-section-enhanced py-5 fade-in-section">
-        <Container>
+        <Container className="px-3 px-md-0">
           {/* En-tête */}
           <div className="section-header text-center mb-5">
             <div className="section-badge slide-down">
               <span>À Propos</span>
             </div>
-            <h2 className="section-title display-4 fw-bold mb-3 slide-down" style={{ animationDelay: '0.1s' }}>
+            <h2 className="section-title fw-bold mb-3 slide-down" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', animationDelay: '0.1s' }}>
               {settings.about_title || 'À propos de Rigoula'}
             </h2>
-            <p className="section-subtitle fs-5 text-muted slide-down" style={{ animationDelay: '0.2s' }}>
+            <p className="section-subtitle text-muted slide-down" style={{ fontSize: 'clamp(1rem, 3.5vw, 1.1rem)', animationDelay: '0.2s' }}>
               {settings.site_description || 'Votre partenaire de confiance en agriculture biologique'}
             </p>
             <div className="title-underline"></div>
@@ -318,17 +318,17 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
         {/* Notre Histoire — 2 colonnes */}
 <section className="story-section-modern mb-5">
-  <Row className="align-items-start g-5">
+  <Row className="align-items-start g-4 g-md-5">
 
     {/* COLONNE GAUCHE — Texte */}
-    <Col lg={6} className="slide-up">
+    <Col xs={12} lg={6} className="slide-up">
       <div className="story-content-modern">
-        <h3 className="story-title fw-bold mb-4">Notre Histoire</h3>
+        <h3 className="story-title fw-bold mb-4" style={{ fontSize: 'clamp(1.3rem, 4vw, 1.8rem)' }}>Notre Histoire</h3>
         <div 
           className="story-text text-muted mb-4"
           style={{
-            fontSize: '0.95rem',
-            lineHeight: '1.7',
+            fontSize: 'clamp(0.9rem, 2.5vw, 0.95rem)',
+            lineHeight: '1.8',
             letterSpacing: '0.3px',
             fontWeight: '500'
           }}
@@ -339,27 +339,28 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
     </Col>
 
     {/* COLONNE DROITE — Photo */}
-    <Col lg={6} className="slide-up" style={{ animationDelay: '0.2s' }}>
+    <Col xs={12} lg={6} className="slide-up" style={{ animationDelay: '0.2s' }}>
       {settings.presentation_image ? (
         <img
           src={resolveMediaUrl(settings.presentation_image)}
           alt="Notre histoire - Rigoula"
           style={{
             width: '100%',
-            height: '100%',
-            minHeight: '400px',
+            height: 'auto',
+            minHeight: '300px',
+            maxHeight: '500px',
             objectFit: 'cover',
             objectPosition: 'center',
             borderRadius: '20px',
             boxShadow: '0 20px 60px rgba(0,0,0,0.12)',
             display: 'block',
-            marginTop: '5rem'
+            marginTop: '2rem'
           }}
         />
       ) : (
         <div style={{
           width: '100%',
-          minHeight: '400px',
+          minHeight: '300px',
           background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
           borderRadius: '20px',
           border: '2px dashed #10b981',
@@ -368,8 +369,8 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-          <span style={{ fontSize: '5rem' }}>🌿</span>
-          <p className="text-muted mt-3 fw-semibold">
+          <span style={{ fontSize: 'clamp(3rem, 8vw, 5rem)' }}>🌿</span>
+          <p className="text-muted mt-3 fw-semibold" style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}>
             Photo à ajouter depuis l'espace admin
           </p>
         </div>
@@ -394,8 +395,9 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
             className="timeline-item" 
             style={{ 
               flex: '1',
-              minWidth: '120px',
-              textAlign: 'center'
+              minWidth: '90px',
+              textAlign: 'center',
+              padding: '0.5rem'
             }}
           >
             <div
@@ -403,9 +405,16 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               style={{
                 background: item.color,
                 color: 'white',
-                fontSize: '0.9rem',
+                fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
                 fontWeight: 'bold',
-                margin: '0 auto 0.5rem auto'
+                margin: '0 auto 0.5rem auto',
+                padding: '0.5rem 0.75rem',
+                borderRadius: '50%',
+                width: '60px',
+                height: '60px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               {item.year}
@@ -413,8 +422,9 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
             <p style={{
               fontWeight: '600',
               color: item.color,
-              fontSize: '0.85rem',
-              margin: 0
+              fontSize: 'clamp(0.75rem, 2vw, 0.85rem)',
+              margin: '0',
+              lineHeight: '1.3'
             }}>
               {item.title}
             </p>
@@ -428,11 +438,12 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
           {/* Nos Valeurs */}
           <section className="values-section-modern mb-5">
-            <h3 className="section-title text-center fw-bold mb-5 slide-down">Nos Valeurs Fondamentales</h3>
-            <Row className="g-4">
+            <h3 className="section-title text-center fw-bold mb-5 slide-down" style={{ fontSize: 'clamp(1.3rem, 4vw, 1.8rem)' }}>Nos Valeurs Fondamentales</h3>
+            <Row className="g-3 g-md-4">
               {valuesData.map((value) => (
                 <Col 
                   key={value.id} 
+                  xs={12}
                   md={6} 
                   lg={3} 
                   className="slide-up" 
@@ -440,10 +451,10 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                 >
                   <div className="value-card-modern">
                     <div className="value-card-header">
-                      <span className="value-icon">{value.icon}</span>
+                      <span className="value-icon" style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}>{value.icon}</span>
                     </div>
-                    <h5 className="fw-bold mb-3">{value.title}</h5>
-                    <p className="text-muted small">{value.description}</p>
+                    <h5 className="fw-bold mb-3" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.1rem)' }}>{value.title}</h5>
+                    <p className="text-muted small" style={{ fontSize: 'clamp(0.85rem, 2vw, 0.9rem)' }}>{value.description}</p>
                   </div>
                 </Col>
               ))}
@@ -454,16 +465,16 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
 
        {/* ===================== SECTION EVENEMENTS ===================== */}
       <section ref={eventsRef} id="evenements" className="events-section-enhanced py-5 fade-in-section">
-        <Container>
+        <Container className="px-3 px-md-0">
           {/* En-tête */}
           <div className="section-header text-center mb-5">
             <div className="section-badge slide-down">
               <span>Événements & Certifications</span>
             </div>
-            <h2 className="section-title display-4 fw-bold mb-3 slide-down" style={{ animationDelay: '0.1s' }}>
+            <h2 className="section-title fw-bold mb-3 slide-down" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', animationDelay: '0.1s' }}>
               Événements & Certifications
             </h2>
-            <p className="section-subtitle fs-5 text-muted slide-down" style={{ animationDelay: '0.2s' }}>
+            <p className="section-subtitle text-muted slide-down" style={{ fontSize: 'clamp(1rem, 3.5vw, 1.1rem)', animationDelay: '0.2s' }}>
               Découvrez nos événements à venir et nos certifications de qualité
             </p>
             <div className="title-underline"></div>
@@ -479,7 +490,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               {/* ONGLET ÉVÉNEMENTS */}
               <Tab 
                 eventKey="events" 
-                title={<span className="fw-bold"> Événements ({events.length})</span>}
+                title={<span className="fw-bold" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}> Événements ({events.length})</span>}
               >
                 <div className="py-4">
                   {events.length === 0 ? (
@@ -491,9 +502,9 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                       </Card.Body>
                     </Card>
                   ) : (
-                    <Row className="g-4">
+                    <Row className="g-3 g-md-4">
                       {events.map((event, idx) => (
-                        <Col key={event.id} md={6} lg={4} className="slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                        <Col key={event.id} xs={12} md={6} lg={4} className="slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                           <div className="event-card-modern h-100">
                             <div className="event-image-wrapper">
                               <div
@@ -502,11 +513,12 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                                   background: event.image
                                     ? `url(${resolveMediaUrl(event.image)}) center/cover`
                                     : 'linear-gradient(135deg, #10b981 0%, #16a34a 100%)',
+                                  minHeight: '200px'
                                 }}
                               >
                                 {!event.image && (
                                   <div className="d-flex align-items-center justify-content-center h-100">
-                                    <span style={{ fontSize: '5rem' }}>📅</span>
+                                    <span style={{ fontSize: 'clamp(3rem, 8vw, 5rem)' }}>📅</span>
                                   </div>
                                 )}
                               </div>
@@ -524,17 +536,17 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                             </div>
 
                             <div className="event-content">
-                              <div className="event-date-badge">
+                              <div className="event-date-badge" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>
                                 📆 {formatDate(event.date_evenement)}
                               </div>
-                              <h4 className="fw-bold mb-3 event-title">
+                              <h4 className="fw-bold mb-3 event-title" style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)' }}>
                                 {event.titre}
                               </h4>
-                              <p className="text-muted event-description">
+                              <p className="text-muted event-description" style={{ fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}>
                                 {event.description}
                               </p>
                               <div className="event-footer">
-                                <small className="text-muted">
+                                <small className="text-muted" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)' }}>
                                   <span>📍 {event.lieu || 'Lieu à confirmer'}</span>
                                 </small>
                               </div>
@@ -550,7 +562,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
               {/* ONGLET CERTIFICATIONS */}
               <Tab 
                 eventKey="certifications" 
-                title={<span className="fw-bold"> Certifications ({certifications.length})</span>}
+                title={<span className="fw-bold" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}> Certifications ({certifications.length})</span>}
               >
                 <div className="py-4">
                   {certifications.length === 0 ? (
@@ -561,7 +573,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                       </Card.Body>
                     </Card>
                   ) : (
-                    <Row className="g-4">
+                    <Row className="g-3 g-md-4">
                       {certifications.map((cert, idx) => {
                         // Parser les images
                         let imagesList = [];
@@ -580,7 +592,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                         const imageUrl = firstImage ? resolveMediaUrl(firstImage) : null;
                         
                         return (
-                          <Col key={cert.id} md={6} lg={4} className="slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                          <Col key={cert.id} xs={12} md={6} lg={4} className="slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                             <div className="cert-card-pro h-100" style={{
                               border: '1px solid #e5e5e5',
                               borderRadius: '8px',
@@ -599,7 +611,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                               }}>
                                 <h6 style={{
                                   margin: 0,
-                                  fontSize: '15px',
+                                  fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
                                   fontWeight: '600',
                                   color: '#1f2937',
                                   letterSpacing: '0.5px',
@@ -613,7 +625,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                               {/* Image au centre */}
                               <div className="cert-image-pro" style={{
                                 flex: 1,
-                                minHeight: '220px',
+                                minHeight: 'clamp(150px, 40vw, 220px)',
                                 position: 'relative',
                                 overflow: 'hidden'
                               }}>
@@ -632,7 +644,7 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                                 >
                                   {!imageUrl && (
                                     <div className="d-flex align-items-center justify-content-center h-100">
-                                      <span style={{ fontSize: '4rem' }}>🏆</span>
+                                      <span style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)' }}>🏆</span>
                                     </div>
                                   )}
                                 </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Alert, InputGroup } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const Login = () => {
@@ -10,6 +10,7 @@ const Login = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -64,14 +65,22 @@ const Login = () => {
 
                 <Form.Group className="mb-4">
                   <Form.Label className="fw-semibold">Mot de passe</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    placeholder="••••••••"
-                  />
+                  <InputGroup>
+                    <Form.Control
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                      placeholder="••••••••"
+                    />
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? '👁️' : '👁️‍🗨️'}
+                    </Button>
+                  </InputGroup>
                 </Form.Group>
 
                 <Button

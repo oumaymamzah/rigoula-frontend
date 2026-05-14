@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Alert, InputGroup } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext.jsx';
 import api from '../services/api';
 
@@ -18,6 +18,9 @@ const Profile = () => {
   });
   const [message, setMessage] = useState({ type: '', text: '' });
   const [loading, setLoading] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -196,35 +199,59 @@ const Profile = () => {
                 <Form onSubmit={handleSubmitPassword}>
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-semibold">Ancien mot de passe</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="oldPassword"
-                      value={passwordData.oldPassword}
-                      onChange={handlePasswordChange}
-                      required
-                    />
+                    <InputGroup>
+                      <Form.Control
+                        type={showOldPassword ? 'text' : 'password'}
+                        name="oldPassword"
+                        value={passwordData.oldPassword}
+                        onChange={handlePasswordChange}
+                        required
+                      />
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => setShowOldPassword(!showOldPassword)}
+                      >
+                        {showOldPassword ? '👁️' : '👁️‍🗨️'}
+                      </Button>
+                    </InputGroup>
                   </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-semibold">Nouveau mot de passe</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="newPassword"
-                      value={passwordData.newPassword}
-                      onChange={handlePasswordChange}
-                      required
-                    />
+                    <InputGroup>
+                      <Form.Control
+                        type={showNewPassword ? 'text' : 'password'}
+                        name="newPassword"
+                        value={passwordData.newPassword}
+                        onChange={handlePasswordChange}
+                        required
+                      />
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                      >
+                        {showNewPassword ? '👁️' : '👁️‍🗨️'}
+                      </Button>
+                    </InputGroup>
                   </Form.Group>
 
                   <Form.Group className="mb-4">
                     <Form.Label className="fw-semibold">Confirmer le mot de passe</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="confirmPassword"
-                      value={passwordData.confirmPassword}
-                      onChange={handlePasswordChange}
-                      required
-                    />
+                    <InputGroup>
+                      <Form.Control
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        name="confirmPassword"
+                        value={passwordData.confirmPassword}
+                        onChange={handlePasswordChange}
+                        required
+                      />
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      >
+                        {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                      </Button>
+                    </InputGroup>
                   </Form.Group>
 
                   <Button

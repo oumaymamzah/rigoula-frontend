@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Table, Button, Modal, Form, Alert, Spinner, Badge } from 'react-bootstrap';
+import { Container, Table, Button, Modal, Form, Alert, Spinner, Badge, InputGroup } from 'react-bootstrap';
 import api from '../services/api';
 
 const UsersManagement = () => {
@@ -17,6 +17,7 @@ const UsersManagement = () => {
     password: '',
     role: 'client'
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -257,14 +258,22 @@ const UsersManagement = () => {
 
               <Form.Group className="mb-3">
                 <Form.Label>Mot de passe {editingUser && '(laissez vide pour ne pas changer)'}</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required={!editingUser}
-                  placeholder={editingUser ? 'Laisser vide pour ne pas modifier' : ''}
-                />
+                <InputGroup>
+                  <Form.Control
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required={!editingUser}
+                    placeholder={editingUser ? 'Laisser vide pour ne pas modifier' : ''}
+                  />
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                  </Button>
+                </InputGroup>
               </Form.Group>
 
               <Form.Group className="mb-3">

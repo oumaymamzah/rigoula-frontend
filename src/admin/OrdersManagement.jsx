@@ -87,9 +87,9 @@ const OrdersManagement = () => {
   }
 
   return (
-    <div className="py-5 bg-light">
-      <Container>
-        <h1 className="fw-bold mb-4">Gestion des Commandes</h1>
+    <div className="py-4 py-md-5 bg-light">
+      <Container className="px-3 px-md-0">
+        <h1 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)' }}>Gestion des Commandes</h1>
 
         {message.text && (
           <Alert variant={message.type} dismissible onClose={() => setMessage({ type: '', text: '' })}>
@@ -97,14 +97,14 @@ const OrdersManagement = () => {
           </Alert>
         )}
 
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <div className="d-flex gap-3">
-            <div>
-              <label className="form-label mb-1">Filtrer par statut:</label>
+        <div className="d-flex flex-column gap-3 gap-md-0 flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+          <div className="d-flex flex-column flex-md-row gap-3 w-100 w-md-auto">
+            <div className="flex-grow-1 flex-md-grow-0">
+              <label className="form-label mb-1" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>Filtrer par statut:</label>
               <Form.Select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                style={{ width: '200px' }}
+                style={{ width: '100%', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}
               >
                 <option value="">Tous les statuts</option>
                 <option value="en_attente">En attente</option>
@@ -114,12 +114,12 @@ const OrdersManagement = () => {
                 <option value="annulee">Annulée</option>
               </Form.Select>
             </div>
-            <div>
-              <label className="form-label mb-1">Trier par date:</label>
+            <div className="flex-grow-1 flex-md-grow-0">
+              <label className="form-label mb-1" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>Trier par date:</label>
               <Form.Select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                style={{ width: '200px' }}
+                style={{ width: '100%', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}
               >
                 <option value="oldest">Plus ancien d'abord</option>
                 <option value="newest">Plus récent d'abord</option>

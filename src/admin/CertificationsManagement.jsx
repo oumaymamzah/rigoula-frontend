@@ -410,7 +410,7 @@ const CertificationsManagement = () => {
                       name="organisme"
                       value={formData.organisme}
                       onChange={handleChange}
-                      placeholder="Bureau Veritas"
+                      placeholder="Organisme"
                     />
                   </Form.Group>
                 </Col>

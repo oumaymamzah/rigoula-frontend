@@ -10,21 +10,21 @@ const Presentation = () => {
     <div className="presentation-page py-5">
       <Container>
         {/* En-tête */}
-        <div className="presentation-header text-center mb-5">
-          <h1 className="display-4 fw-bold mb-3">
+        <div className="presentation-header text-center mb-5 px-3 px-md-0">
+          <h1 className="display-4 fw-bold mb-3" style={{fontSize: 'clamp(1.75rem, 6vw, 2.5rem)'}}>
             {settings.about_title || 'À propos de Rigoula'}
           </h1>
-          <p className="lead text-muted">
+          <p className="lead text-muted" style={{fontSize: 'clamp(1rem, 3.5vw, 1.1rem)'}}>
             {settings.site_description || 'Votre partenaire de confiance'}
           </p>
         </div>
 
         {/* Notre Histoire et Photo */}
         <section className="story-section mb-5">
-          <Row className="align-items-center">
-            <Col md={6} className="mb-4 mb-md-0">
-              <h2 className="story-title fw-bold mb-4">Notre Histoire</h2>
-              <p className="story-text text-muted">
+          <Row className="align-items-center g-4">
+            <Col xs={12} md={6} className="mb-4 mb-md-0 px-3 px-md-0">
+              <h2 className="story-title fw-bold mb-4" style={{fontSize: 'clamp(1.5rem, 5vw, 2.2rem)'}}>Notre Histoire</h2>
+              <p className="story-text text-muted" style={{fontSize: 'clamp(0.95rem, 3vw, 1.05rem)', lineHeight: '1.8'}}>
                 {settings.about_description || <>
                   2017 : Les débuts Mouna Triki Lamine, designer de formation, décide de changer de vie. Elle crée une petite ferme dans son jardin pour cultiver des légumes bio, sans produits chimiques.<br /><br />
                   2021 : On grandit Face au succès, RIGOULA s'installe sur un terrain de 2 hectares à Bir Mallouli.<br /><br />
@@ -35,7 +35,7 @@ const Presentation = () => {
                 </>}
               </p>
             </Col>
-            <Col md={6}>
+            <Col xs={12} md={6} className="px-3 px-md-0">
               <div className="presentation-image rounded shadow">
                 {settings.presentation_image ? (
                   <img 
@@ -47,7 +47,7 @@ const Presentation = () => {
                 ) : (
                   <div 
                     style={{
-                      height: '400px',
+                      height: '300px',
                       backgroundColor: '#f0f0f0',
                       display: 'flex',
                       alignItems: 'center',
@@ -69,60 +69,50 @@ const Presentation = () => {
         {/* Timeline en bas */}
         <section className="timeline-section mb-5">
           <Row>
-            <Col lg={10} className="mx-auto">
+            <Col lg={10} className="mx-auto px-3 px-lg-0">
               <div className="timeline-container">
-                <div className="timeline-item mb-4 pb-3 border-bottom">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5 className="fw-bold text-success">2017</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <p className="text-muted mb-0">{settings.timeline_2017 || 'La naissance de RIGOULA'}</p>
-                    </div>
+                <div className="timeline-item mb-4 pb-4 border-bottom" style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                  <div style={{flex: '0 0 80px', minWidth: '80px'}}>
+                    <h5 className="fw-bold text-success" style={{fontSize: 'clamp(1.1rem, 4vw, 1.25rem)'}}>2017</h5>
+                  </div>
+                  <div style={{flex: '1', minWidth: '200px'}}>
+                    <p className="text-muted mb-0" style={{fontSize: 'clamp(0.95rem, 3vw, 1rem)'}}>{settings.timeline_2017 || 'La naissance de RIGOULA'}</p>
                   </div>
                 </div>
 
-                <div className="timeline-item mb-4 pb-3 border-bottom">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5 className="fw-bold text-success">2021</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <p className="text-muted mb-0">{settings.timeline_2021 || 'Expansion et croissance'}</p>
-                    </div>
+                <div className="timeline-item mb-4 pb-4 border-bottom" style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                  <div style={{flex: '0 0 80px', minWidth: '80px'}}>
+                    <h5 className="fw-bold text-success" style={{fontSize: 'clamp(1.1rem, 4vw, 1.25rem)'}}>2021</h5>
+                  </div>
+                  <div style={{flex: '1', minWidth: '200px'}}>
+                    <p className="text-muted mb-0" style={{fontSize: 'clamp(0.95rem, 3vw, 1rem)'}}>{settings.timeline_2021 || 'Expansion et croissance'}</p>
                   </div>
                 </div>
 
-                <div className="timeline-item mb-4 pb-3 border-bottom">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5 className="fw-bold text-success">2022</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <p className="text-muted mb-0">{settings.timeline_2022 || 'Certification et excellence'}</p>
-                    </div>
+                <div className="timeline-item mb-4 pb-4 border-bottom" style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                  <div style={{flex: '0 0 80px', minWidth: '80px'}}>
+                    <h5 className="fw-bold text-success" style={{fontSize: 'clamp(1.1rem, 4vw, 1.25rem)'}}>2022</h5>
+                  </div>
+                  <div style={{flex: '1', minWidth: '200px'}}>
+                    <p className="text-muted mb-0" style={{fontSize: 'clamp(0.95rem, 3vw, 1rem)'}}>{settings.timeline_2022 || 'Certification et excellence'}</p>
                   </div>
                 </div>
 
-                <div className="timeline-item mb-4 pb-3 border-bottom">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5 className="fw-bold text-success">2024</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <p className="text-muted mb-0">{settings.timeline_2024 || 'Récompenses nationales'}</p>
-                    </div>
+                <div className="timeline-item mb-4 pb-4 border-bottom" style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                  <div style={{flex: '0 0 80px', minWidth: '80px'}}>
+                    <h5 className="fw-bold text-success" style={{fontSize: 'clamp(1.1rem, 4vw, 1.25rem)'}}>2024</h5>
+                  </div>
+                  <div style={{flex: '1', minWidth: '200px'}}>
+                    <p className="text-muted mb-0" style={{fontSize: 'clamp(0.95rem, 3vw, 1rem)'}}>{settings.timeline_2024 || 'Récompenses nationales'}</p>
                   </div>
                 </div>
 
-                <div className="timeline-item">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5 className="fw-bold text-success">✓ Aujourd'hui</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <p className="text-muted mb-0">{settings.timeline_today || 'Une gamme authentique'}</p>
-                    </div>
+                <div className="timeline-item" style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                  <div style={{flex: '0 0 80px', minWidth: '80px'}}>
+                    <h5 className="fw-bold text-success" style={{fontSize: 'clamp(1.1rem, 4vw, 1.25rem)'}}>✓</h5>
+                  </div>
+                  <div style={{flex: '1', minWidth: '200px'}}>
+                    <p className="text-muted mb-0" style={{fontSize: 'clamp(0.95rem, 3vw, 1rem)'}}>{settings.timeline_today || 'Une gamme authentique'}</p>
                   </div>
                 </div>
               </div>
@@ -131,10 +121,10 @@ const Presentation = () => {
         </section>
 
         {/* Nos Valeurs */}
-        <section className="values-section mb-5">
-          <h2 className="values-title text-center fw-bold mb-5">Nos Valeurs</h2>
-          <Row>
-            <Col md={4} className="mb-4">
+        <section className="values-section mb-5 px-3 px-md-0">
+          <h2 className="values-title text-center fw-bold mb-5" style={{fontSize: 'clamp(1.5rem, 5vw, 2.2rem)'}}>Nos Valeurs</h2>
+          <Row className="g-3">
+            <Col xs={12} md={4} className="mb-2">
               <Card className="value-card text-center h-100 shadow-sm border-0">
                 <Card.Body>
                   <div className="value-icon display-3 mb-3">✨</div>
@@ -146,7 +136,7 @@ const Presentation = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
+            <Col xs={12} md={4} className="mb-2">
               <Card className="value-card text-center h-100 shadow-sm border-0">
                 <Card.Body>
                   <div className="value-icon display-3 mb-3">🌱</div>
@@ -158,7 +148,7 @@ const Presentation = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
+            <Col xs={12} md={4} className="mb-2">
               <Card className="value-card text-center h-100 shadow-sm border-0">
                 <Card.Body>
                   <div className="value-icon display-3 mb-3">🤝</div>
