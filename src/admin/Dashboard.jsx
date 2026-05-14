@@ -44,16 +44,8 @@ const Dashboard = () => {
   return (
     <div className="py-4 py-md-5 bg-light">
       <Container className="px-3 px-md-0">
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-          <h1 className="fw-bold mb-0" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)' }}>Tableau de bord</h1>
-          <Button 
-            variant="outline-success" 
-            onClick={handleRefresh}
-            disabled={refreshing}
-            style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}
-          >
-            {refreshing ? '⏳ Actualisation...' : '🔄 Rafraîchir'}
-          </Button>
+        <div className="mb-4">
+          <h1 className="fw-bold" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)' }}>Tableau de bord</h1>
         </div>
 
         {/* Statistiques principales */}
