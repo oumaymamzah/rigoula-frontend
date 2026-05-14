@@ -8,17 +8,17 @@ const Home = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="hero-section py-4 py-md-5">
-        <Container className="py-3 py-md-5 text-white text-center px-3">
-          <h1 className="fw-bold mb-4" style={{fontSize: 'clamp(2rem, 8vw, 3rem)', lineHeight: '1.2'}}>
+       {/* Hero Section */}
+      <section className="hero-section py-5">
+        <Container className="py-5 text-white text-center">
+          <h1 className="display-3 fw-bold mb-4">
              {settings.hero_title || 'Bienvenue chez Rigoula'}
           </h1>
-          <p className="fs-4 mb-5" style={{fontSize: 'clamp(1rem, 4vw, 1.5rem)', lineHeight: '1.5'}}>
+          <p className="lead fs-4 mb-5">
             {settings.hero_subtitle || 'Des produits agricoles biologiques frais et de qualité supérieure'}
           </p>
           <Link to="/produits">
-            <Button size="lg" className="hero-btn fw-bold px-4 py-2 py-md-3" style={{fontSize: 'clamp(0.95rem, 2vw, 1.1rem)'}}>
+            <Button size="lg" className="hero-btn fw-bold px-5 py-3">
               Découvrir nos produits
             </Button>
           </Link>
