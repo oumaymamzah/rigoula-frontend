@@ -212,27 +212,27 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
   return (
     <div>
       {/* ===================== SECTION HOME ===================== */}
-      <section ref={homeRef} id="home" className="hero-section-enhanced py-4 py-md-5 fade-in-section">
-        <Container className="py-3 py-md-5 px-3">
+      <section ref={homeRef} id="home" className="hero-section-enhanced py-5 fade-in-section">
+        <Container className="py-5">
           <Row className="align-items-center min-vh-70">
-            <Col xs={12} lg={6} className="text-white mb-4 mb-lg-0">
+            <Col lg={6} className="text-white mb-4 mb-lg-0">
               <div className="hero-content">
-                <h1 className="fw-bold mb-4 slide-down" style={{ fontSize: 'clamp(2rem, 7vw, 3.5rem)', lineHeight: '1.2', animationDelay: '0.1s' }}>
+                <h1 className="hero-title display-2 fw-bold mb-4 slide-down" style={{ animationDelay: '0.1s' }}>
                   {settings.hero_title || 'Bienvenue chez Rigoula'}
                 </h1>
-                <p className="mb-5 slide-down" style={{ fontSize: 'clamp(1rem, 4vw, 1.25rem)', lineHeight: '1.6', animationDelay: '0.2s' }}>
+                <p className="hero-subtitle fs-5 mb-5 slide-down" style={{ animationDelay: '0.2s' }}>
                   {settings.hero_subtitle || 'Des produits agricoles biologiques frais et de qualité supérieure'}
                 </p>
                 <div className="hero-cta slide-down" style={{ animationDelay: '0.3s' }}>
                   <Link to="/produits">
-                    <Button className="hero-btn-modern fw-bold px-4 px-md-5 py-2 py-md-3" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)' }}>
+                    <Button className="hero-btn-modern fw-bold px-6 py-3 me-3">
                       Découvrir nos produits
                     </Button>
                   </Link>
                 </div>
               </div>
             </Col>
-            <Col xs={12} lg={6} className="text-center zoom-in" style={{ animationDelay: '0.4s' }}>
+            <Col lg={6} className="text-center zoom-in" style={{ animationDelay: '0.4s' }}>
               <div className="hero-graphic">
                 {settings.site_logo && (
                   <div className="floating-element">
@@ -241,14 +241,14 @@ RIGOULA se prépare à conquérir les marchés internationaux pour faire découv
                         src={resolveMediaUrl(settings.site_logo)} 
                         alt="Logo Rigoula" 
                         style={{ 
-                          maxWidth: '100%', 
-                          maxHeight: '400px', 
+                          maxWidth: '300%', 
+                          maxHeight: '600px', 
                           objectFit: 'contain',
                           filter: 'drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2))'
                         }}
                       />
                     ) : (
-                      <div style={{ fontSize: 'clamp(100px, 20vw, 200px)', lineHeight: '1' }}>
+                      <div style={{ fontSize: '200px', lineHeight: '1' }}>
                         {settings.site_logo}
                       </div>
                     )}
