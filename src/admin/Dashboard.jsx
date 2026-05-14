@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Spinner, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import api from '../services/api';
 import TopProduitsStats from '../components/TopProduitsStats';
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetchStats();
@@ -24,13 +23,7 @@ const Dashboard = () => {
       console.error('Erreur lors du chargement des statistiques');
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
-  };
-
-  const handleRefresh = async () => {
-    setRefreshing(true);
-    await fetchStats();
   };
 
   if (loading) {
