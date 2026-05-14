@@ -9,10 +9,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchStats();
-    
-    // Rafraîchir les stats toutes les 30 secondes
-    const interval = setInterval(fetchStats, 30000);
-    return () => clearInterval(interval);
   }, []);
 
   const fetchStats = async () => {
@@ -35,15 +31,13 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="py-4 py-md-5 bg-light">
-      <Container className="px-3 px-md-0">
-        <div className="mb-4">
-          <h1 className="fw-bold" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)' }}>Tableau de bord</h1>
-        </div>
+    <div className="py-5 bg-light">
+      <Container>
+        <h1 className="fw-bold mb-4">Tableau de bord</h1>
 
         {/* Statistiques principales */}
-        <Row className="mb-4 g-2 g-md-3">
-          <Col xs={12} sm={6} lg={3} className="mb-2">
+        <Row className="mb-4">
+          <Col md={3} className="mb-3">
             <Card className="border-0 shadow-sm h-100">
               <Card.Body className="text-center">
                 <div className="display-4 mb-2" style={{ color: '#10b981' }}>👥</div>
@@ -85,30 +79,30 @@ const Dashboard = () => {
         </Row>
 
         {/* Statistiques secondaires */}
-        <Row className="mb-4 g-2 g-md-3">
-          <Col xs={12} sm={6} lg={4} className="mb-2">
+        <Row className="mb-4">
+          <Col md={4} className="mb-3">
             <Card className="border-0 shadow-sm">
               <Card.Body>
-                <h6 className="text-muted mb-2" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>Commandes en attente</h6>
-                <h3 className="fw-bold text-warning" style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.5rem)' }}>{stats?.pendingOrders || 0}</h3>
+                <h6 className="text-muted mb-2">Commandes en attente</h6>
+                <h3 className="fw-bold text-warning">{stats?.pendingOrders || 0}</h3>
               </Card.Body>
             </Card>
           </Col>
 
-          <Col xs={12} sm={6} lg={4} className="mb-2">
+          <Col md={4} className="mb-3">
             <Card className="border-0 shadow-sm">
               <Card.Body>
-                <h6 className="text-muted mb-2" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>Messages non lus</h6>
-                <h3 className="fw-bold text-info" style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.5rem)' }}>{stats?.unreadMessages || 0}</h3>
+                <h6 className="text-muted mb-2">Messages non lus</h6>
+                <h3 className="fw-bold text-info">{stats?.unreadMessages || 0}</h3>
               </Card.Body>
             </Card>
           </Col>
 
-          <Col xs={12} sm={6} lg={4} className="mb-2">
+          <Col md={4} className="mb-3">
             <Card className="border-0 shadow-sm">
               <Card.Body>
-                <h6 className="text-muted mb-2" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>Produits en rupture</h6>
-                <h3 className="fw-bold text-danger" style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.5rem)' }}>{stats?.outOfStock || 0}</h3>
+                <h6 className="text-muted mb-2">Produits en rupture</h6>
+                <h3 className="fw-bold text-danger">{stats?.outOfStock || 0}</h3>
               </Card.Body>
             </Card>
           </Col>
