@@ -23,20 +23,24 @@ export default function TopProduitsStats() {
   const [error,    setError]    = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+    let refreshTimer;
+
     const fetchData = async () => {
       try {
-        const statsRes = await api.get('/dashboard/top-produits-stats');
+        const statsRes = await api.get('/dashboard/top-produits-stats', { headers: { 'Cache-Control': 'no-cache' } });
         let rows = Array.isArray(statsRes.data) ? statsRes.data : [];
 
         // Fallback: if stats endpoint is empty, rebuild stats from orders payload.
         if (!rows.length) {
-          const ordersRes = await api.get('/commandes');
+          const ordersRes = await api.get('/commandes', { headers: { 'Cache-Control': 'no-cache' } });
           let orders = ordersRes.data;
           if (orders?.data) orders = orders.data;
           if (!Array.isArray(orders)) orders = [];
 
           const salesByProduct = {};
           orders.forEach((order) => {
+            if (order?.statut === 'annulee') return;
             if (Array.isArray(order.produits)) {
               order.produits.forEach((item) => {
                 const productName = item.nom || item.name || `Product ${item.id || ''}`;
@@ -76,18 +80,32 @@ export default function TopProduitsStats() {
           pct_donut: totalQuantity > 0 ? Math.round((p.quantity / totalQuantity) * 100) : 0,
         }));
 
-        setProduits(correctedData);
-
+        if (isMounted) {
+          setProduits(correctedData);
+          setError(null);
+        }
       } catch (err) {
         console.error(err);
-        setError("Erreur chargement données.");
+        if (isMounted) setError("Erreur chargement données.");
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
+    const handleVisibility = () => {
+      if (!document.hidden) fetchData();
+    };
+
     fetchData();
-    return () => { donutChart.current?.destroy(); };
+    refreshTimer = setInterval(fetchData, 30000);
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      isMounted = false;
+      clearInterval(refreshTimer);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      donutChart.current?.destroy();
+    };
   }, []);
 
   // ── Créer le chart UNE FOIS que les produits sont mis à jour ──
