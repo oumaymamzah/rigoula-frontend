@@ -111,6 +111,7 @@ const MessagesManagement = () => {
                   <th>ID</th>
                   <th>Nom</th>
                   <th>Email</th>
+                  <th>Téléphone</th>
                   <th>Sujet</th>
                   <th>Message</th>
                   <th>Date</th>
@@ -124,17 +125,18 @@ const MessagesManagement = () => {
                     <td className="fw-bold">#{message.id}</td>
                     <td>
                       <strong>{message.nom}</strong>
-                      <br />
-                      <small className="text-muted">{message.telephone || '-'}</small>
                     </td>
                     <td>
                       <small>{message.email}</small>
                     </td>
                     <td>
+                      <small>{message.telephone || '-'}</small>
+                    </td>
+                    <td>
                       <strong>{message.sujet || '-'}</strong>
                     </td>
                     <td>
-                      <small className="d-inline-block text-truncate" style={{ maxWidth: '200px' }}>
+                      <small>
                         {message.message}
                       </small>
                     </td>
