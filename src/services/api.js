@@ -8,6 +8,7 @@ const API_URL = process.env.REACT_APP_API_URL
 // Créer une instance axios
 const api = axios.create({
   baseURL: API_URL,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json'
   }
