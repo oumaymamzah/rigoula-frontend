@@ -4,7 +4,7 @@ const authService = {
   // Inscription
   register: async (userData) => {
     try {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post('/auth/register', userData, { timeout: 10000 });
       return response.data;
     } catch (error) {
       // Améliorer la structure de l'erreur pour la cohérence

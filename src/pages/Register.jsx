@@ -34,8 +34,13 @@ const Register = () => {
       await register(formData);
       navigate('/login');
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message || 'Erreur lors de l\'inscription';
-      setError(errorMessage);
+      const isTimeout = err.code === 'ECONNABORTED' || err.message?.toLowerCase().includes('timeout');
+      if (isTimeout) {
+        navigate('/login');
+      } else {
+        const errorMessage = err.response?.data?.message || err.message || 'Erreur lors de l\'inscription';
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }
