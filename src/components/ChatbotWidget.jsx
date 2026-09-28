@@ -76,35 +76,43 @@ function ChatbotWidget() {
   );
 
   const askGemini = async (question) => {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: 'user',
-              parts: [{ text: question }]
-            }
-          ]
-        })
+    const request = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: 'user',
+            parts: [{ text: question }]
+          }
+        ]
+      })
+    };
+
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`,
+        request
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        return data?.candidates?.[0]?.content?.parts
+          ?.map((part) => part.text)
+          .join('')
+          .trim() || 'Je n\'ai pas pu generer une reponse pour le moment.';
       }
-    );
 
-    if (!response.ok) {
       const details = await response.text();
-      throw new Error(`Gemini request failed: ${response.status} ${details}`);
+      const error = new Error(`Gemini request failed: ${response.status} ${details}`);
+      error.status = response.status;
+
+      if (![429, 500, 502, 503, 504].includes(response.status) || attempt === 2) {
+        throw error;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 800 * (attempt + 1)));
     }
-
-    const data = await response.json();
-    const text =
-      data?.candidates?.[0]?.content?.parts
-        ?.map((part) => part.text)
-        .join('')
-        .trim() || 'Je n\'ai pas pu generer une reponse pour le moment.';
-
-    return text;
   };
 
   const onSend = async (event) => {
@@ -151,11 +159,14 @@ function ChatbotWidget() {
       const answer = await askGemini(enrichedPrompt);
       setMessages((prev) => [...prev, { role: 'bot', text: answer }]);
     } catch (error) {
+      const errorMessage = error?.status === 503
+        ? 'Gemini est temporairement indisponible. Réessayez dans quelques instants.'
+        : 'Erreur IA: impossible de contacter Gemini pour le moment.';
       setMessages((prev) => [
         ...prev,
         {
           role: 'bot',
-          text: 'Erreur IA: impossible de contacter Gemini pour le moment.'
+          text: errorMessage
         }
       ]);
       console.error(error);
